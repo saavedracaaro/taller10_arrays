@@ -24,19 +24,24 @@ const strangeArray = [
   "JavaScript",
 ];
 
-// Función que recibe por parámetro un array y muestra sus elementos en pantalla
+// Función para el array muestre sus elementos
 function showList(array) {
   const container = document.getElementById("list");
-  container.innerHTML = "";
-  // Más info de forEach => https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
-  array.forEach((element) => {
+  container.innerHTML = ""; // Limpiar el contenido previo
+
+  // Filtrar los elementos en solo tipo String
+  const stringsOnly = array
+    .filter(element => typeof element === 'string') // Filtrar solo strings
+    .sort(); // Ordenar alfabéticamente
+
+  // Agregar los elementos filtrados a la lista
+  stringsOnly.forEach(element => {
     const li = document.createElement("li");
     li.appendChild(document.createTextNode(element));
     container.appendChild(li);
   });
 }
 
-document.addEventListener("DOMContentLoaded", (e) => {
-  // Escribe tu solución aquí
-  // Sugerencia de cómo mostrar el array => showList(strangeArray);
+document.addEventListener("DOMContentLoaded", () => {
+  showList(strangeArray); // Llamar a la función para mostrar los elementos
 });
